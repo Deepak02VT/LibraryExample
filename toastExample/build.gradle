@@ -1,11 +1,12 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
 android {
     compileSdk 32
-
+    namespace = "com.vtnetzwelt.toastlibrary"
     defaultConfig {
         minSdk 23
         targetSdk 32
@@ -37,4 +38,18 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.Deepak02VT'
+                artifactId = 'Toast-Library'
+                version = '0.2'
+            }
+        }
+    }
 }
